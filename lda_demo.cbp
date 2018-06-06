@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="lda_demo"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\thirdparty\;CMake Files\thirdparty\cppjieba\;CMake Files\thirdparty\cppjieba\deps\;CMake Files\thirdparty\cppjieba\deps\gtest\;CMake Files\thirdparty\cppjieba\test\;CMake Files\thirdparty\cppjieba\test\unittest\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/sina/github/lda_demo"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/sina/github/lda_demo"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/sina/github/lda_demo"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lda_demo">
+				<Option output="/Users/sina/github/lda_demo/lda_demo" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/sina/github/lda_demo"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps"/>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/Makefile&quot;  VERBOSE=1 lda_demo"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="lda_demo/fast">
+				<Option output="/Users/sina/github/lda_demo/lda_demo" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/sina/github/lda_demo"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps"/>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/Makefile&quot;  VERBOSE=1 lda_demo/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest">
+				<Option output="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest/libgtest.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps"/>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/include"/>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest/."/>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest/Makefile&quot;  VERBOSE=1 gtest"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest/fast">
+				<Option output="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest/libgtest.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps"/>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/include"/>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest/."/>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest/Makefile&quot;  VERBOSE=1 gtest/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="load_test">
+				<Option output="/Users/sina/github/lda_demo/thirdparty/cppjieba/load_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/sina/github/lda_demo/thirdparty/cppjieba"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps"/>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/Makefile&quot;  VERBOSE=1 load_test"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="load_test/fast">
+				<Option output="/Users/sina/github/lda_demo/thirdparty/cppjieba/load_test" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/sina/github/lda_demo/thirdparty/cppjieba"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps"/>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/Makefile&quot;  VERBOSE=1 load_test/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="demo">
+				<Option output="/Users/sina/github/lda_demo/thirdparty/cppjieba/demo" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/sina/github/lda_demo/thirdparty/cppjieba"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps"/>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/Makefile&quot;  VERBOSE=1 demo"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="demo/fast">
+				<Option output="/Users/sina/github/lda_demo/thirdparty/cppjieba/demo" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/sina/github/lda_demo/thirdparty/cppjieba"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps"/>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/Makefile&quot;  VERBOSE=1 demo/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test.run">
+				<Option output="/Users/sina/github/lda_demo/thirdparty/cppjieba/test/test.run" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/sina/github/lda_demo/thirdparty/cppjieba/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DLOGGING_LEVEL=LL_WARNING"/>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps"/>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/include"/>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/unittest/Makefile&quot;  VERBOSE=1 test.run"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/unittest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/unittest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/unittest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test.run/fast">
+				<Option output="/Users/sina/github/lda_demo/thirdparty/cppjieba/test/test.run" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/sina/github/lda_demo/thirdparty/cppjieba/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DLOGGING_LEVEL=LL_WARNING"/>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps"/>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/include"/>
+					<Add directory="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/unittest/Makefile&quot;  VERBOSE=1 test.run/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/unittest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/unittest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/sina/github/lda_demo/thirdparty/cppjieba/test/unittest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/sina/github/lda_demo/main.cpp">
+			<Option target="lda_demo"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest/src/gtest-all.cc">
+			<Option target="gtest"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/test/demo.cpp">
+			<Option target="demo"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/test/load_test.cpp">
+			<Option target="load_test"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/test/unittest/gtest_main.cpp">
+			<Option target="test.run"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/test/unittest/jieba_test.cpp">
+			<Option target="test.run"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/test/unittest/keyword_extractor_test.cpp">
+			<Option target="test.run"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/test/unittest/pos_tagger_test.cpp">
+			<Option target="test.run"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/test/unittest/pre_filter_test.cpp">
+			<Option target="test.run"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/test/unittest/segments_test.cpp">
+			<Option target="test.run"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/test/unittest/textrank_test.cpp">
+			<Option target="test.run"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/test/unittest/trie_test.cpp">
+			<Option target="test.run"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/test/unittest/unicode_test.cpp">
+			<Option target="test.run"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\thirdparty\cppjieba\"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\thirdparty\cppjieba\"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\thirdparty\cppjieba\deps\"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\thirdparty\cppjieba\deps\"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\thirdparty\cppjieba\deps\gtest\"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/deps/gtest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\thirdparty\cppjieba\deps\gtest\"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/test/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\thirdparty\cppjieba\test\"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/test/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\thirdparty\cppjieba\test\"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/test/unittest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\thirdparty\cppjieba\test\unittest\"/>
+		</Unit>
+		<Unit filename="/Users/sina/github/lda_demo/thirdparty/cppjieba/test/unittest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\thirdparty\cppjieba\test\unittest\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
