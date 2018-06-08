@@ -11,11 +11,14 @@
 #include <sstream>
 #include <climits>
 #include <stdexcept>
+#include<dirent.h>
+
+
 #include "cppjieba/Jieba.hpp"
 #include "my_rand.h"
 //#define debug
 
-
+using namespace std;
 const char* const DICT_PATH = "thirdparty/cppjieba/dict/jieba.dict.utf8";
 const char* const HMM_PATH = "thirdparty/cppjieba/dict/hmm_model.utf8";
 const char* const USER_DICT_PATH = "thirdparty/cppjieba/dict/user.dict.utf8";
@@ -30,8 +33,90 @@ typedef __int64 int64_t;
 typedef unsigned __int64 uint64_t;
 
 #endif
+#define UTFLEN(x)  utf8_look_for_table[(x)]
+//定义查找表，长度256，表中的数值表示以此为起始字节的utf8字符长度
+
+unsigned char utf8_look_for_table[] =
+
+        {
+
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+
+                2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+
+                2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+
+                3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+
+                4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 1, 1
+
+        };
 
 
+bool split(const std::string &str, char delim,
+           std::vector<unsigned int> &elems,
+           std::map<unsigned int, std::string> &id2word,
+           int &max_word_id,
+           bool skip_empty = true) {
+    std::istringstream iss(str);
+    for (std::string item; getline(iss, item, delim); )
+        if (skip_empty && item.empty()) continue;
+        else {
+            auto item_int =static_cast<unsigned int &&>(atoi(item.c_str()));
+            const char * word = id2word[item_int].c_str();
+            uint len = static_cast<uint>(strlen(id2word[item_int].c_str()));
+            int wlen=0;
+            for(char *ptr = const_cast<char *>(word); *ptr != 0 && wlen < len; wlen++, ptr+=UTFLEN((unsigned char)*ptr));
+            if(max_word_id<item_int){
+                max_word_id = item_int;
+            }
+            if(wlen>1)
+              elems.push_back(item_int);
+        }
+
+    return true;
+}
+
+
+bool split(const std::string &str, char delim,
+           std::vector<unsigned int> &elems,
+           int &max_word_id,
+           bool skip_empty = true) {
+    std::istringstream iss(str);
+    for (std::string item; getline(iss, item, delim); )
+        if (skip_empty && item.empty()) continue;
+        else {
+            auto item_int =static_cast<unsigned int &&>(atoi(item.c_str()));
+            if(max_word_id<item_int){
+                max_word_id = item_int;
+            }
+            elems.push_back(item_int);
+        }
+
+    return true;
+}
 
 
 
@@ -43,12 +128,12 @@ public:
     ~simpleLDA();
     std::set<std::string> load_stop_words(const char * path_file);  //加载暂停词
     void load_data(const char* path_file ); //加载数据
-
+    void load_data(const char* article_path ,const char* kv_path ); //加载数据
+    bool isvalid(const char * word );
     int sampling(unsigned m);
     int init_train();
     int train();
     int test(const char * doc);
-    bool isvalid(const char * word );
     int save_top_words(std::basic_string<char, std::char_traits<char>, std::allocator<char>> dst_path);
 
 protected:
@@ -73,13 +158,15 @@ protected:
     unsigned int iterationNum;  // max iteration for train
 
     /****** Model variables ******/
-    unsigned short ** Z;						// topic assignment for each word
-    unsigned   ** n_zw;					// number of times word w assigned to topic k
-    unsigned ** n_dz; //sparse representation of n_mk: number of words assigned to topic k in document m
-    unsigned * n_z;						// number of words assigned to topic k = sum_w n_wk = sum_m n_mk
+    unsigned int  ** Z;						// topic assignment for each word
+    int ** n_zw;					// number of times word w assigned to topic k
+    int ** n_dz; //sparse representation of n_mk: number of words assigned to topic k in document m
+    int * n_z;						// number of words assigned to topic k = sum_w n_wk = sum_m n_mk
 
     /**** template model variables  ****/
-     double * p;
+    double * p;
+    unsigned  int max_M;
+    unsigned  int max_word_id;
 
     /**** model save parameters ***/
     unsigned int step_size;
@@ -89,7 +176,7 @@ protected:
 
 
     /****** Functions to update sufficient statistics ******/
-    inline int add_to_topic(unsigned doc_n, unsigned word_id, unsigned short topic)
+    inline int add_to_topic(unsigned doc_n, unsigned word_id, unsigned  topic)
     {
         ++n_z[ topic ];
         ++n_zw[ word_id ][ topic ];
@@ -98,7 +185,7 @@ protected:
         return 0;
     }
 
-    inline int remove_from_topic(unsigned doc_n, unsigned word_id, unsigned short topic)
+    inline int remove_from_topic(unsigned doc_n, unsigned word_id, unsigned  topic)
     {
         --n_z[topic];
         --n_zw[word_id][topic];
@@ -111,6 +198,80 @@ protected:
 
 };
 
+void simpleLDA::load_data(const char *article_path, const char *kv_path) {
+    //加载微博数据
+    std::ifstream fin;
+    if (article_path == NULL){
+        //check path_file is empty
+        std::cout<<"article_path can not find ! "<<article_path<<std::endl;
+    }
+
+    if (kv_path == NULL){
+        //check path_file is empty
+        std::cout<<"kv_path can not find ! "<<kv_path<<std::endl;
+    }
+    std::cout<<"load the dataset now .... :   "<<article_path << " ."<<std::endl;
+    id2word.clear();
+    word2id.clear();
+
+    std::cout<<"load the kv_map now .... :   "<<kv_path << " ."<<std::endl;
+    DIR *dp;
+    struct dirent *dirp;
+    if((dp = opendir(kv_path)) == NULL) {
+        std::cout << "Can't open " << kv_path << std::endl;
+        return;
+    }
+    while((dirp = readdir(dp)) != NULL) {
+        cout << dirp->d_name << endl;
+        if(strcmp(dirp->d_name ,".")==0 ||0==strcmp(dirp->d_name ,".."))
+            continue;
+        std::string abstract_file = std::string(kv_path)+std::string("/")+std::string(dirp->d_name);
+        fin.open(abstract_file.c_str(), std::ios::in);
+        std::string line;
+        while (!fin.eof()) {
+            std::getline(fin, line, '\n');
+            std::istringstream iss(line);
+            std::string key;
+            unsigned int values;
+            int cnt = 0;
+            for (std::string item; getline(iss, item, ' ');) {
+                if (item.empty()) continue;
+                else {
+                    if (cnt & 1) {
+                        key = item;
+                    } else {
+                        values = static_cast<unsigned int>(atoi(item.c_str()));
+                    }
+                    ++cnt;
+                }
+            }
+            word2id[key] = values;
+            id2word[values] = key;
+        }
+        fin.close();
+    }
+    closedir(dp);
+
+
+
+    fin.open(article_path , std::ios::in);
+    std::string temp;
+    max_M=0;
+    while(!fin.eof()){
+        std::getline(fin ,temp,'\n');
+        std::vector<unsigned int> doc;
+        split(temp, ' ', doc, reinterpret_cast<int &>(this->max_word_id));
+        if(max_M<doc.size()){
+            max_M = static_cast<unsigned int>(doc.size());
+        }
+        docs.push_back(doc);
+    }
+    std::cout<<"max worid_id:  "<<this->max_word_id<<std::endl;
+
+    fin.close();
+    std::cout<<"data loaded completed ! total words"<<max_M<<std::endl;
+    return;
+}
 void simpleLDA::load_data(const char* path_file ){ //加载数据
 
     cppjieba::Jieba jieba(DICT_PATH,
@@ -135,11 +296,12 @@ void simpleLDA::load_data(const char* path_file ){ //加载数据
 
     fin.open(path_file , std::ios::in);
     std::string temp;
-    auto max_indx=0;
+    this->max_M=0;
     while(!fin.eof()){
         std::getline(fin ,temp,'\n');
         jieba.Cut( temp , words, true);  //HMM cut the sentence
         std::vector<unsigned int> doc;
+        //std::vector< std::string> wdoc;
 
         for(auto word : words){
             if( isvalid(word.c_str()) ) {
@@ -149,17 +311,20 @@ void simpleLDA::load_data(const char* path_file ){ //加载数据
                     id2word[indx] = word;
                 }
                 doc.push_back(word2id[word]);
-                max_indx=indx;
 #ifdef debug
                 std::cout << word << std::endl;
 #endif
             }
         }
-        //std::cout << limonp::Join(words.begin(), words.end(), "/") << std::endl;
-
         docs.push_back(doc);
+        if(this->max_M<doc.size()){
+            this->max_M = doc.size();
+        }
+        //std::cout << limonp::Join(wdoc.begin(), wdoc.end(), "/") << std::endl;
+
+        //docs.push_back(doc);
     }
-    std::cout<<"data loaded completed ! total words"<<max_indx<<std::endl;
+    std::cout<<"data loaded completed ! total words"<<this->max_M<<std::endl;
     return ;
 }
 
@@ -228,43 +393,43 @@ simpleLDA::~simpleLDA() {
 
 int simpleLDA::init_train() {
     this->N = static_cast<unsigned int>(docs.size());
-    this->M = static_cast<unsigned int>(word2id.size());
+    this->M = static_cast<unsigned int>(this->max_word_id+1);
     alphaK = alpha/K;
     Vbeta = M * beta;
 
     // allocate heap memory for model variables
-    n_zw = new unsigned*[M];
+    n_zw = new int*[M];
     for (unsigned w = 0; w < M; w++)
     {
-        n_zw[w] = new unsigned[K];
+        n_zw[w] = new int[K];
         for (unsigned short k = 0; k < K; k++)
         {
             n_zw[w][k] = 0;
         }
     }
 
-    n_z = new unsigned[K];
+    n_z = new int[K];
     for (unsigned short k = 0; k < K; k++)
     {
         n_z[k] = 0;
     }
 
 
-    this->n_dz = new unsigned*[N];
+    this->n_dz = new int*[N];
     for(unsigned n =0 ; n< N  ; ++n){
-        this->n_dz[n] = new unsigned [K];
+        this->n_dz[n] = new int [K];
         for(unsigned k =0 ; k <K ; ++k){
             this->n_dz[n][k]=0;
         }
     }
 
-    this->Z = new unsigned short*[N];
+    this->Z = new unsigned *[N];
     for(unsigned n = 0 ; n < N ; ++n){
-        Z[n] = new unsigned short [M];
+        Z[n] = new unsigned  [this->max_M];
         for(unsigned w =0 ; w<docs[n].size() ;++w){
-            unsigned word_id = docs[n][w]-1;
-            unsigned short topic = static_cast<unsigned short>(rng_.rand_k(K));
-            Z[n][word_id] = topic;
+            unsigned word_id = docs[n][w];
+            unsigned topic = (rng_.rand_k(K));
+            Z[n][w] = topic;
             ++n_zw[ word_id ][topic];
             ++n_z[topic];
             ++n_dz[n][topic];
@@ -276,7 +441,9 @@ int simpleLDA::init_train() {
 
 bool simpleLDA::isvalid(const char * word ){ //判断是否是一个合格的关键字，不能有魔法数字，不能有暂停词，长度大于1
 
-    uint wlen = strlen(word);
+    uint len = strlen(word);
+    int wlen=0;
+    for(char *ptr = const_cast<char *>(word); *ptr != 0 && wlen < len; wlen++, ptr+=UTFLEN((unsigned char)*ptr));
 
     if (word ==NULL || wlen<2||stopwords.end() != stopwords.find(word)){
         return false;
@@ -336,8 +503,8 @@ int simpleLDA::train() {
 int simpleLDA::sampling(unsigned n) {
     //采样
     for(unsigned w = 0 ; w < docs[n].size() ; ++w ){
-        unsigned  cur_word = docs[n][w]-1;
-        unsigned short topic = this->Z[n][cur_word];
+        unsigned  cur_word = docs[n][w];
+        unsigned  topic = this->Z[n][w];
         unsigned pre_topic = topic;
         this->remove_from_topic(n,cur_word,topic);
         // 采用积累法进行多项式抽样
@@ -360,8 +527,8 @@ int simpleLDA::sampling(unsigned n) {
         topic = static_cast<unsigned short>(std::lower_bound(p, p + K, u) - p);
 
         // 添加当前的样本
-        add_to_topic( n, cur_word, topic );
-        this->Z[n][cur_word] = topic;
+        this->add_to_topic( n, cur_word, topic );
+        this->Z[n][w] = topic;
     }
     return 0;
 }
@@ -387,20 +554,21 @@ int simpleLDA::test(const char * doc_context) {
         }
     }
     //初始化样本
-    unsigned short * test_Z = new unsigned short [M];
-    unsigned * test_ndz = new unsigned[K];
+    auto * test_Z = new int [this->max_M];
+    int * test_ndz = new int[K];
+    memset(test_ndz,0, sizeof(int)*K);
+    memset(test_Z,0, sizeof(int)*(this->max_M));
     for(unsigned w =0 ; w<doc.size() ;++w){
-        unsigned word_id = doc[w]-1;
-        unsigned short topic = static_cast<unsigned short>(rng_.rand_k(K));
-        test_Z[word_id] = topic;
+        short topic = short (rng_.rand_k(K));
+        test_Z[w] = topic;
         ++test_ndz[topic];
     }
     //采样
     for(unsigned w = 0 ; w < doc.size() ; ++w ){
-        unsigned  cur_word = doc[w]-1;
+        unsigned  cur_word = doc[w];
         // 采用积累法进行多项式抽样
-        unsigned short topic = test_Z[cur_word];
-        unsigned pre_topic = topic;
+        short topic = test_Z[w];
+        short pre_topic = topic;
         --n_z[topic];
         --n_zw[cur_word][topic];
         --test_ndz[topic];
@@ -414,10 +582,10 @@ int simpleLDA::test(const char * doc_context) {
         //对于非标准话的p[]进行样本缩小
         double u = rng_.rand_double() * temp;
         // 找到比u小的第一个topic
-        topic = static_cast<unsigned short>(std::lower_bound(p, p + K, u) - p);
+        topic =  short(std::lower_bound(p, p + K, u) - p);
 
-        --n_z[pre_topic];
-        --n_zw[cur_word][pre_topic];
+        ++n_z[pre_topic];
+        ++n_zw[cur_word][pre_topic];
         ++test_ndz[topic];
         test_Z[w]=topic;
 
@@ -444,21 +612,21 @@ int simpleLDA::save_top_words(std::basic_string<char, std::char_traits<char>, st
     if (!fout)
         throw std::runtime_error( "Error: Cannot open file to save: " + std::string(dst_path) );
 
-    std::map<unsigned, std::string>::const_iterator it;
+    std::map<unsigned int, std::string>::const_iterator it;
 
     for (unsigned short k = 0; k < K; k++)
     {
-        std::vector<std::pair<unsigned, unsigned> > words_probs(M);
-        std::pair<unsigned, unsigned> word_prob;
+        std::vector<std::pair<unsigned  int, int> > words_probs(M);
+        std::pair<int, int> word_prob;
         for (int w = 0; w < M; w++)
         {
-            word_prob.first = static_cast<unsigned int>(w);
+            word_prob.first = w;
             word_prob.second = this->n_zw[w][k];
             words_probs[w] = word_prob;
         }
 
         // quick sort to sort word-topic probability
-        std::sort(words_probs.begin(), words_probs.end(), [](std::pair<unsigned, unsigned> &left, std::pair<unsigned, unsigned> &right){return left.second > right.second;});
+        std::sort(words_probs.begin(), words_probs.end(), [](std::pair<unsigned int, int> &left, std::pair<unsigned int, int> &right){return left.second > right.second;});
 
         fout << "Topic " << k << "th:" << std::endl;
         for (unsigned i = 0; i < 15; i++)
